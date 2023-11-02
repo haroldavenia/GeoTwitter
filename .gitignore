@@ -1,0 +1,8 @@
+venv/
+src/utils/LOG_*.log
+.env
+
+__pychache__/
+*.py[cod]
+
+.pytest_cache/
