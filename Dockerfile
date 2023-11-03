@@ -1,4 +1,4 @@
-FROM python:3.7.13-alpine
+FROM python:3.7.9-alpine3.13
 WORKDIR /app
 COPY './requirements.txt' .
 RUN pip install -r requirements.txt
