@@ -1,4 +1,4 @@
-import collections.abc
+import os, collections.abc
 from shapely.geometry import box, MultiPoint, Point
 from geopy.geocoders import Nominatim
 import spacy
@@ -11,7 +11,8 @@ ALLOW_PLACE_CLASS = ['boundary', 'place']
 class Locate:
 
     def __init__(self, log):
-        self.sp = spacy.load("en_core_web_sm")
+        model = os.environ.get("SPACY_MODEL", "en_core_web_lg")
+        self.sp = spacy.load(model)
         self.GEOLOCATOR = Nominatim(user_agent="smy-application")
         self._log = log
 

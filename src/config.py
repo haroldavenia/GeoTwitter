@@ -12,7 +12,7 @@
 # -------------------------------------------------------------------------------
 """---------------------------Import Libraries --------------------------------"""
 import os
-import connexion
+from flask import Flask
 from dotenv import load_dotenv
 from flask_restx import Api
 from flask_marshmallow import Marshmallow
@@ -36,10 +36,9 @@ class AppConfig:
         basedir = os.path.abspath(os.path.dirname(__file__))
         baseDirParent = os.path.abspath(os.path.join(basedir, os.pardir))
         load_dotenv(os.path.join(baseDirParent, env)) if env else load_dotenv()
-        self._connex_app = connexion.App(__name__, specification_dir=basedir)
 
         # Configurar la aplicación Flask
-        self._app = self._connex_app.app
+        self._app = Flask(__name__)
         self._app.config['JSON_AS_ASCII'] = os.getenv('JSON_AS_ASCII')
 
         # Inicializar Marshmallow
@@ -49,9 +48,6 @@ class AppConfig:
 
     def get_app(self):
         return self._app
-
-    def get_connex_app(self):
-        return self._connex_app
 
     def get_marshmallow(self):
         return self._ma
