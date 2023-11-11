@@ -44,6 +44,13 @@ search_post_req = api.model('twitter', {
 })
 
 
+@api.route('/health', methods=['GET'])
+@api.response(404, 'Search not found.')
+class HealthCheck(Resource):
+    def get(self):
+        return {"status": "OK"}
+
+
 #  Create a RESTful resource
 @api.route('/search', methods=['POST'])
 @api.response(404, 'Search not found.')
